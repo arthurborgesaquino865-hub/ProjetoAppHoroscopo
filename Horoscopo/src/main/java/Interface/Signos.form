@@ -80,7 +80,7 @@
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbMês" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbMes" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbMês" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbMes" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnDescobrirSigno" min="-2" max="-2" attributes="0"/>
@@ -217,7 +217,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbM&#xea;s">
+                <Component class="javax.swing.JComboBox" name="cbMes">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="12">
@@ -247,6 +247,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Descobrir Signo"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDescobrirSignoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -393,6 +396,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Calcular "/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -418,10 +424,15 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="btnSigno" min="-2" pref="165" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="18" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="tfCompatibilidade" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -431,10 +442,12 @@
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="signo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="btnSigno" min="-2" pref="179" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Compatibilidade" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="402" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="tfCompatibilidade" min="-2" pref="223" max="-2" attributes="0"/>
+                          <EmptySpace pref="118" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -456,9 +469,14 @@
                     <Property name="text" type="java.lang.String" value="Compatibilidade"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnSigno">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jButton1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfCompatibilidade">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jTextField1"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1011,7 +1029,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea2">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemAries">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -1585,7 +1603,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea4">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemTouro">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -2159,7 +2177,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea6">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemGemeos">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -2701,6 +2719,13 @@
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="txtMensagemCancer" min="-2" pref="472" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -2713,6 +2738,13 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnCopiarMsgCancer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="txtMensagemCancer" min="-2" pref="250" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2732,15 +2764,6 @@
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea8">
-                      <Properties>
-                        <Property name="columns" type="int" value="20"/>
-                        <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Valorize quem est&#xe1; ao seu lado, mas n&#xe3;o se esque&#xe7;a de valorizar voc&#xea; tamb&#xe9;m."/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
                 </Container>
                 <Component class="javax.swing.JButton" name="btnCopiarMsgCancer">
                   <Properties>
@@ -2754,6 +2777,13 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Copiar Mensagem"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextArea" name="txtMensagemCancer">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="text" type="java.lang.String" value="Valorize quem est&#xe1; ao seu lado, mas n&#xe3;o se esque&#xe7;a de valorizar voc&#xea; tamb&#xe9;m."/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -3270,7 +3300,7 @@
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
                               <Component id="tituloMensagemLeao" alignment="2" min="-2" pref="451" max="-2" attributes="0"/>
-                              <Component id="txMensagemAries4" alignment="2" min="-2" pref="474" max="-2" attributes="0"/>
+                              <Component id="txMensagemLeao" alignment="2" min="-2" pref="474" max="-2" attributes="0"/>
                               <Component id="btnCopiarMsgLeao" alignment="2" min="-2" pref="400" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -3283,7 +3313,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tituloMensagemLeao" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txMensagemAries4" pref="252" max="32767" attributes="0"/>
+                          <Component id="txMensagemLeao" pref="252" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnCopiarMsgLeao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -3300,7 +3330,7 @@
                     <Property name="text" type="java.lang.String" value="Mensagem do dia"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="txMensagemAries4">
+                <Container class="javax.swing.JScrollPane" name="txMensagemLeao">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -3387,7 +3417,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaVirgem" pref="138" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaVirgem" pref="139" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesVirgem" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -3961,7 +3991,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaLibra" pref="136" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaLibra" pref="139" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesLibra" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -4458,7 +4488,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea14">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemLibra">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -4538,7 +4568,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaEscorpiao" pref="134" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaEscorpiao" pref="138" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesEscorpiao" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -5112,7 +5142,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaSagitario" pref="130" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaSagitario" pref="136" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesSagitario" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -5686,7 +5716,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaCapricornio" pref="124" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaCapricornio" pref="134" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesCapricornio" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -6841,7 +6871,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="tituloCaracteristicaPeixes" pref="101" max="32767" attributes="0"/>
+                          <Component id="tituloCaracteristicaPeixes" pref="124" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="pfortesPeixes" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -7335,7 +7365,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea24">
+                    <Component class="javax.swing.JTextArea" name="txtMensagemPeixes">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
