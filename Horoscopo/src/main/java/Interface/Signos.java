@@ -6,7 +6,11 @@ package Interface;
 
 import java.awt.Image;
 import java.time.LocalDate;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +23,8 @@ public class Signos extends javax.swing.JFrame {
     /**
      * Creates new form Signos
      */
+    Clip musica;
+    
     public Signos() {
         initComponents();
         RedimensionarImagens();
@@ -848,6 +854,55 @@ public class Signos extends javax.swing.JFrame {
     }
 
 }// fim do compatibilidade
+    
+    public void TocarMusica() {
+    try {
+        // Se a música já foi carregada, continuar a reprodução
+        if (musica != null && musica.isOpen()) {
+            musica.start();
+            return;
+        }
+
+        // Localizar o arquivo dentro do projeto
+        java.net.URL arquivo = getClass().getResource("/musica/musica.wav");
+
+        if (arquivo == null) {
+            JOptionPane.showMessageDialog(this, "Arquivo de música não encontrado!");
+            return;
+        }
+
+        // Abrir o áudio e carregar a música
+        try (AudioInputStream audio = AudioSystem.getAudioInputStream(arquivo)) {
+            musica = AudioSystem.getClip();
+            musica.open(audio);
+        }
+
+        // Iniciar a reprodução
+        musica.start();
+
+    } catch (Exception erro) {
+        JOptionPane.showMessageDialog(
+                this,
+                "Erro ao tocar a música: " + erro.getMessage()
+        );
+    }
+}// Fim do TocarMusica
+    
+    public void PausarMusica() {
+    if (musica != null && musica.isOpen()) {
+        // Pausar na posição atual
+        musica.stop();
+    }
+}// Fim do PausarMusica
+    
+    public void PararMusica() {
+    if (musica != null && musica.isOpen()) {
+        // Parar e voltar ao início
+        musica.stop();
+        musica.setFramePosition(0);
+    }
+}// Fim do PararMusica
+
         
         
       
@@ -890,6 +945,8 @@ public class Signos extends javax.swing.JFrame {
         Compatibilidade = new javax.swing.JLabel();
         btnSigno = new javax.swing.JButton();
         tfCompatibilidade = new javax.swing.JTextField();
+        btnPlay = new javax.swing.JButton();
+        btnPause = new javax.swing.JButton();
         fundoInicio = new javax.swing.JLabel();
         aries = new javax.swing.JPanel();
         areaCaracteristicasAries = new javax.swing.JPanel();
@@ -1588,6 +1645,12 @@ public class Signos extends javax.swing.JFrame {
 
         tfCompatibilidade.setText("jTextField1");
 
+        btnPlay.setText("Play");
+        btnPlay.addActionListener(this::btnPlayActionPerformed);
+
+        btnPause.setText("Pause");
+        btnPause.addActionListener(this::btnPauseActionPerformed);
+
         javax.swing.GroupLayout areaResultadoLayout = new javax.swing.GroupLayout(areaResultado);
         areaResultado.setLayout(areaResultadoLayout);
         areaResultadoLayout.setHorizontalGroup(
@@ -1595,19 +1658,23 @@ public class Signos extends javax.swing.JFrame {
             .addGroup(areaResultadoLayout.createSequentialGroup()
                 .addGroup(areaResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(areaResultadoLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(Compatibilidade))
-                    .addGroup(areaResultadoLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(signo))
+                        .addGap(52, 52, 52)
+                        .addComponent(tfCompatibilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(areaResultadoLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(btnSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaResultadoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(tfCompatibilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                        .addComponent(btnSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(areaResultadoLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(signo))
+                    .addGroup(areaResultadoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(areaResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(areaResultadoLayout.createSequentialGroup()
+                                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Compatibilidade))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         areaResultadoLayout.setVerticalGroup(
             areaResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1618,12 +1685,16 @@ public class Signos extends javax.swing.JFrame {
                 .addComponent(btnSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Compatibilidade)
-                .addGap(61, 61, 61)
+                .addGap(30, 30, 30)
                 .addComponent(tfCompatibilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(areaResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        inicio.add(areaResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 80, 200, 680));
+        inicio.add(areaResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 80, 400, 680));
 
         fundoInicio.setIcon(new javax.swing.ImageIcon("C:\\Users\\ArthurAquino\\Documents\\ProjetoAppHoroscopo\\Horoscopo\\src\\main\\resources\\assets\\image_be2129bb.jpg")); // NOI18N
         inicio.add(fundoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 790));
@@ -3814,7 +3885,7 @@ public class Signos extends javax.swing.JFrame {
             areaCaracteristicasEscorpiaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaCaracteristicasEscorpiaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tituloCaracteristicaEscorpiao, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(tituloCaracteristicaEscorpiao, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pfortesEscorpiao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4119,7 +4190,7 @@ public class Signos extends javax.swing.JFrame {
             areaCaracteristicasSagitarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaCaracteristicasSagitarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tituloCaracteristicaSagitario, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(tituloCaracteristicaSagitario, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pfortesSagitario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4424,7 +4495,7 @@ public class Signos extends javax.swing.JFrame {
             areaCaracteristicasCapricornioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaCaracteristicasCapricornioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tituloCaracteristicaCapricornio, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addComponent(tituloCaracteristicaCapricornio, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pfortesCapricornio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5038,7 +5109,7 @@ public class Signos extends javax.swing.JFrame {
             areaCaracteristicasPeixesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaCaracteristicasPeixesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tituloCaracteristicaPeixes, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(tituloCaracteristicaPeixes, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pfortesPeixes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5376,6 +5447,16 @@ public class Signos extends javax.swing.JFrame {
         CalcularCompatibilidade();
     }//GEN-LAST:event_btnCalcularActionPerformed
 
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        // TODO add your handling code here:
+        TocarMusica();
+    }//GEN-LAST:event_btnPlayActionPerformed
+
+    private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+        PausarMusica();
+    }//GEN-LAST:event_btnPauseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5507,6 +5588,8 @@ public class Signos extends javax.swing.JFrame {
     private javax.swing.JButton btnCopiarMsgTouro;
     private javax.swing.JButton btnCopiarMsgVirgem;
     private javax.swing.JButton btnDescobrirSigno;
+    private javax.swing.JButton btnPause;
+    private javax.swing.JButton btnPlay;
     private javax.swing.JButton btnSigno;
     private javax.swing.JPanel cancer;
     private javax.swing.JPanel capricornio;
